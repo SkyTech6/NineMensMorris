@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/ninemensnorris.unity
+    guid: ae5a2dcb62744ec4f89d8a08e446eb96
   m_configObjects: {}
