@@ -6,9 +6,7 @@ using UnityEngine;
 public class Node : MonoBehaviour
 {
     public Connections[] possibleLinks;
-
     public bool isOccupied = false;
-
     public GameObject occupyingPiece;
 
     void Start()
