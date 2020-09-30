@@ -11,6 +11,7 @@ public class PlayerHandler : MonoBehaviour
     {
         if (sidePieces.Count == 0)
         {
+            piecesOnBoard.TrimExcess();
             foreach (GameObject go in piecesOnBoard)
                 go.GetComponent<Pickup>().isSelectable = enable;
         }

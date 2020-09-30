@@ -20,6 +20,25 @@ public class Pickup : MonoBehaviour
 
     void OnMouseDown()
     {
+        if(GameManager.gameManager.removalPhase > 0)
+        {
+            if(!isOnBoard())
+                return;
+                
+            if(GameManager.gameManager.currentPlayerTurn == 0 && this.gameObject.tag != "piece-white")
+            {
+                GameManager.gameManager.removalPhase--;
+                nodePosition.occupyingPiece = null;
+                Destroy(this.gameObject);
+            }
+            else if(GameManager.gameManager.currentPlayerTurn == 1 && this.gameObject.tag != "piece-black")
+            {
+                GameManager.gameManager.removalPhase--;
+                nodePosition.occupyingPiece = null;
+                Destroy(this.gameObject);
+            }
+        }
+
         if (isSelected)
         {
             if (PiecePlacement.manager.isPlaceable)
