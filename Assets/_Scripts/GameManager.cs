@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +11,11 @@ public class GameManager : MonoBehaviour
     //player 1 = black
     public int currentPlayerTurn = 0;
     public PlayerHandler[] players;
+
+    public TMP_Text whiteScore;
+    public TMP_Text blackScore;
+    public int white;
+    public int black;
 
     void Start()
     {
@@ -42,5 +47,19 @@ public class GameManager : MonoBehaviour
             players[1].SetPieces(true);
             players[0].SetPieces(false);
         }     
+    }
+
+    public void EarnPoint()
+    {
+        if(currentPlayerTurn == 0)
+        {
+            white++;
+            whiteScore.text = "White: " + white;
+        }
+        else
+        {
+            black++;
+            blackScore.text = "Black: " + black;
+        }
     }
 }

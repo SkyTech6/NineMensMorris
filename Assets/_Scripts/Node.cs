@@ -9,15 +9,30 @@ public class Node : MonoBehaviour
     public bool isOccupied = false;
     public GameObject occupyingPiece;
 
-    void Start()
+    public void SetOccupancy(GameObject go)
     {
+        isOccupied = true;
+        occupyingPiece = go;
 
+        string pieceTag = occupyingPiece.gameObject.tag;
+        
+        foreach(Connections conn in possibleLinks)
+        {
+            Node n1 = conn.linkOne.GetComponent<Node>();
+            Node n2 = conn.linkTwo.GetComponent<Node>();
+
+            if(n1.occupyingPiece != null && n2.occupyingPiece != null)
+            {
+                if(n1.occupyingPiece.tag == pieceTag && n2.occupyingPiece.tag == pieceTag)
+                {
+                    GameManager.gameManager.EarnPoint();
+                }
+            }
+        }
+
+        GameManager.gameManager.SwitchTurn();
     }
 
-    void Update()
-    {
-
-    }
 }
 
 [Serializable]

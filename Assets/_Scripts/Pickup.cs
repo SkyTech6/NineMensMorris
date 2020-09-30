@@ -23,7 +23,7 @@ public class Pickup : MonoBehaviour
             if(PiecePlacement.manager.isPlaceable)
             {
                 isSelected = false;
-                GameManager.gameManager.SwitchTurn();
+                PiecePlacement.manager.placeablePosition.SetOccupancy(this.gameObject);
             }   
         }
         else
