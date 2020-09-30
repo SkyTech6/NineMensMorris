@@ -6,13 +6,12 @@ public class PlayerHandler : MonoBehaviour
 {
     public GameObject[] sidePieces;
 
-    public void StartTurn()
+    public void SetPieces(bool enable)
     {
-        //attach a piece to the mouse?
-    }
-
-    void Update()
-    {
-        
+        Debug.Log("Setting pieces to " + enable);
+        foreach(GameObject go in sidePieces)
+        {
+            go.GetComponent<Pickup>().isSelectable = enable;
+        }
     }
 }
