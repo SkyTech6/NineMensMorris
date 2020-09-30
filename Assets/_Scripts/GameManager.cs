@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //player 0 = white
+    //player 1 = black
+    public int currentPlayerTurn = 0;
+
     void Start()
     {
-        
+        currentPlayerTurn = Random.Range(0, 2);
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    void SwitchTurn()
     {
-        
+        if(currentPlayerTurn == 1)
+            currentPlayerTurn = 0;
+        else
+            currentPlayerTurn = 1;
     }
 }
