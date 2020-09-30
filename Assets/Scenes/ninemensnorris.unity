@@ -3284,6 +3284,10 @@ MonoBehaviour:
   players:
   - {fileID: 1999503420}
   - {fileID: 1977909618}
+  whiteScore: {fileID: 47503016}
+  blackScore: {fileID: 182582305}
+  white: 0
+  black: 0
 --- !u!4 &1743015543
 Transform:
   m_ObjectHideFlags: 0

@@ -8,7 +8,6 @@ public class Detection : MonoBehaviour
     {
         if(collider.tag == "piece-black" || collider.tag == "piece-white")
         {
-            Debug.Log($"{collider.tag} entered {this.gameObject.name} placement zone");
             PiecePlacement.manager.placeablePosition = this.gameObject.GetComponent<Node>();
             PiecePlacement.manager.isPlaceable = true;
         }

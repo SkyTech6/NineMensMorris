@@ -4,14 +4,34 @@ using UnityEngine;
 
 public class PlayerHandler : MonoBehaviour
 {
-    public GameObject[] sidePieces;
+    public List<GameObject> sidePieces;
+    public List<GameObject> piecesOnBoard;
 
     public void SetPieces(bool enable)
     {
-        Debug.Log("Setting pieces to " + enable);
-        foreach(GameObject go in sidePieces)
+        if (sidePieces.Count == 0)
         {
-            go.GetComponent<Pickup>().isSelectable = enable;
+            foreach (GameObject go in piecesOnBoard)
+                go.GetComponent<Pickup>().isSelectable = enable;
+        }
+        else
+        {
+            List<GameObject> toRemove = new List<GameObject>();
+            foreach (GameObject go in sidePieces)
+            {
+                if (go.GetComponent<Pickup>().isOnBoard())
+                {
+                    piecesOnBoard.Add(go);
+                    toRemove.Add(go);
+                }
+                
+                go.GetComponent<Pickup>().isSelectable = enable;
+            }
+
+            foreach(GameObject go in toRemove)
+                sidePieces.Remove(go);
+
+            sidePieces.TrimExcess();
         }
     }
 }

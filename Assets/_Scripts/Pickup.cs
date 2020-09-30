@@ -6,10 +6,12 @@ public class Pickup : MonoBehaviour
 {
     public bool isSelectable = true;
     bool isSelected = false;
+    private Node nodePosition;
+    public bool isOnBoard() { if (nodePosition != null) return true; else return false; }
 
     void Update()
     {
-        if(isSelected)
+        if (isSelected)
         {
             Vector3 position = MousePositional.mouse.GetPosition();
             transform.position = new Vector3(position.x, 0.624f, position.z);
@@ -18,21 +20,28 @@ public class Pickup : MonoBehaviour
 
     void OnMouseDown()
     {
-        if(isSelected)
+        if (isSelected)
         {
-            if(PiecePlacement.manager.isPlaceable)
+            if (PiecePlacement.manager.isPlaceable)
             {
                 isSelected = false;
+                nodePosition = PiecePlacement.manager.placeablePosition;
                 PiecePlacement.manager.placeablePosition.SetOccupancy(this.gameObject);
-            }   
+            }
         }
         else
         {
-            if(!isSelectable)
+            if (!isSelectable)
                 return;
-        
+
             isSelected = true;
             PiecePlacement.manager.pieceToPlace = this.gameObject;
+
+            if (nodePosition != null)
+            {
+                nodePosition.occupyingPiece = null;
+                nodePosition = null;
+            }
         }
     }
 }
